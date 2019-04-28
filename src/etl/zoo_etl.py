@@ -1,5 +1,7 @@
 import pandas as pd
 
+# '../data/zoo/zoo.data'
+
 class ZooEtl:
     def __init__(self, filename):
         self.filename = filename
@@ -32,7 +34,7 @@ class ZooEtl:
         self.exclude_cols = ['name']
         self.target = 'type'
     
-    def run():
-        df = pd.read_csv('../data/zoo/zoo.data', header=None)
+    def run(self):
+        df = pd.read_csv(self.filename, header=None)
         df.columns = self.columns
         return df

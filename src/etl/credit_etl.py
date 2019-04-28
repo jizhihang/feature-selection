@@ -1,5 +1,7 @@
 import pandas as pd
 
+# '../data/credit/default of credit card clients.xls'
+
 class CreditEtl:
     def __init__(self, filename):
         self.filename = filename
@@ -7,6 +9,6 @@ class CreditEtl:
         self.exclude_cols = ['ID']
         self.target = 'default payment next month'
     
-    def run():
-        df = pd.read_excel('../data/credit/default of credit card clients.xls', header=1, index=0)
+    def run(self):
+        df = pd.read_excel(self.filename, header=1, index=0)
         return df

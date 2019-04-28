@@ -1,5 +1,7 @@
 import pandas as pd
 
+# '../data/iris/iris.data'
+
 class IrisEtl:
     def __init__(self, filename):
         self.filename = filename
@@ -21,7 +23,7 @@ class IrisEtl:
         self.exclude_cols = []
         self.target = 'class'
     
-    def run():
-        df = pd.read_csv('../data/iris/iris.data', header=None)
+    def run(self):
+        df = pd.read_csv(self.filename, header=None)
         df.columns = self.columns
         return df
