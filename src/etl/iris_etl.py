@@ -1,11 +1,10 @@
 import pandas as pd
+from etl.etl import Etl
 
-# '../data/iris/iris.data'
-
-class IrisEtl:
-    def __init__(self, filename):
-        self.filename = filename
-
+class IrisEtl(Etl):
+    def __init__(self, filename='../data/iris/iris.data'):
+        super().__init__(filename,'Iris')
+        
         """
         Column Information:
 
@@ -23,7 +22,18 @@ class IrisEtl:
         self.exclude_cols = []
         self.target = 'class'
     
-    def run(self):
+    def extract(self):
         df = pd.read_csv(self.filename, header=None)
         df.columns = self.columns
         return df
+
+    def transform(self,df):
+        df = self.remove_exclude_cols(df)
+        train_df,test_df = self.train_test_split(df)
+        return train_df,test_df
+
+    def run(self):
+        df = self.extract()
+        train_df,test_df = self.transform(df)
+        return train_df,test_df
+        
