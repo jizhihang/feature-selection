@@ -21,19 +21,10 @@ class IrisEtl(Etl):
 
         self.exclude_cols = []
         self.target = 'class'
+        self.target_is_categorical = True
     
     def extract(self):
         df = pd.read_csv(self.filename, header=None)
         df.columns = self.columns
         return df
-
-    def transform(self,df):
-        df = self.remove_exclude_cols(df)
-        train_df,test_df = self.train_test_split(df)
-        return train_df,test_df
-
-    def run(self):
-        df = self.extract()
-        train_df,test_df = self.transform(df)
-        return train_df,test_df
         
